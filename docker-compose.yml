@@ -1,3 +1,5 @@
+version: '3.8'
+
 services:
   wordpress:
     image: wordpress:latest
@@ -28,3 +30,11 @@ services:
     networks:
       - wordpress_network
 
+
+volumes:
+  wordpress_data:
+  postgres_data:
+
+networks:
+  wordpress_network:
+    driver: bridge
