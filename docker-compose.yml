@@ -1,0 +1,37 @@
+version: '3.7'
+
+services:
+  wordpress:
+    image: wordpress:latest
+    restart: always
+    ports:
+      - "8000:80"
+    environment:
+      WORDPRESS_DB_HOST: postgres:5432
+      WORDPRESS_DB_NAME: wordpress
+      WORDPRESS_DB_USER: wpuser
+      WORDPRESS_DB_PASSWORD: wppassword
+    volumes:
+      - wordpress_data:/var/www/html
+    networks:
+      - wordpress_network
+
+  postgres:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_DB: wordpress
+      POSTGRES_USER: wpuser
+      POSTGRES_PASSWORD: wppassword
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - wordpress_network
+
+volumes:
+  wordpress_data:
+  postgres_data:
+
+networks:
+  wordpress_network:
+    driver: bridge
