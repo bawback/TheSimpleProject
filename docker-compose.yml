@@ -21,8 +21,6 @@ services:
     ports:
       - "8080:80"
     environment:
-      # در ادامه، در فایل Dockerfile هم یک سری ENV ست می‌کنیم،
-      # اما اگر بخواهید اینجا Overrides انجام دهید یا مستقلاً ست کنید:
       WORDPRESS_DB_HOST: db:5432
       WORDPRESS_DB_NAME: wordpress
       WORDPRESS_DB_USER: wordpress
